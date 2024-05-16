@@ -66,7 +66,7 @@ http {
         location /app1 {
             set $upstream upstream_app_1;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream_app_1/app1;
+            proxy_pass https://$upstream/app1;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -76,7 +76,7 @@ http {
         location /app2 {
             set $upstream upstream_app_2;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream_app_2/app2;
+            proxy_pass https://$upstream/app2;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -86,7 +86,7 @@ http {
         location /app3 {
             set $upstream upstream_app_3;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream_app_3/app3;
+            proxy_pass https://$upstream/app3;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
