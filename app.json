@@ -17,6 +17,15 @@
       "value": "heroku.com"
     }
 	},
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "private-s"
+    }
+  },
+  "addons": [
+    "papertrail"
+  ],
     "buildpacks": [
         {
           "url": "https://github.com/heroku/heroku-buildpack-nginx"
