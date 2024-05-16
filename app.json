@@ -1,0 +1,25 @@
+{
+	"name": "Heroku nginx reverse proxy",
+	"description": "A sample nginx app that acts as reverse proxy for other Heroku apps",
+    "keywords": [
+        "revere proxy",
+        "nginx",
+        "heroku"
+      ],
+    "repository": "https://github.com/abernicchia-heroku/nginx-reverseproxy",
+	"env": {
+    "NGINX_WORKERS": {
+      "description": "nginx workers",
+      "value": "2"
+    },
+    "NGINX_UPSTREAM_DOMAINNAME": {
+      "description": "upstream domain name URL e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
+      "value": "heroku.com"
+    }
+	},
+    "buildpacks": [
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-nginx"
+        }  
+      ]
+}

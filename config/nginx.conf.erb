@@ -1,0 +1,96 @@
+daemon off;
+# Heroku dynos have at least 2 cores
+worker_processes <%= ENV['NGINX_WORKERS'] || 2 %>;
+
+events {
+    use epoll;
+    accept_mutex on;
+    worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
+}
+
+http {
+    gzip on;
+    gzip_comp_level 2;
+    gzip_min_length 512;
+    server_tokens off;
+
+    log_format l2main '$time_iso8601 - $status $request - client IP: $http_x_forwarded_for - to $upstream_addr - upstream status: $upstream_status, upstream_response_time $upstream_response_time, request_time $request_time';
+
+    #access_log /dev/stdout l2main;
+    # set the following to "debug" when diagnosing an issue
+    #error_log /dev/stdout notice;
+    #error_log /dev/stdout debug;
+    
+    #log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+    access_log <%= ENV['NGINX_ACCESS_LOG_PATH'] || 'logs/nginx/access.log' %> l2main;
+    error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %> debug;
+
+
+    log_not_found on;
+
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+
+    # Must read the body in 5 seconds.
+    client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>;
+
+    # handle SNI
+    proxy_ssl_server_name on;
+    #proxy_ssl_name *.herokuapp.com;
+    #proxy_ssl_protocols TLSv1.2;
+
+    # resolver needs to be set because we're using dynamic proxy_pass
+    resolver 8.8.8.8;
+
+    upstream upstream_app_1 {
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+    }
+
+    upstream upstream_app_2 {
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+    }
+    
+    upstream upstream_app_3 {
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+    }
+
+
+    server {
+        listen <%= ENV["PORT"] %>;
+        server_name _;
+
+        root /app;
+        index index.html;
+
+        location /app1 {
+            set $upstream upstream_app_1;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_pass https://$upstream_app_1/app1;
+
+            proxy_set_header x-forwarded-host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+        }
+
+        location /app2 {
+            set $upstream upstream_app_2;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_pass https://$upstream_app_2/app2;
+
+            proxy_set_header x-forwarded-host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+        } 
+
+        location /app3 {
+            set $upstream upstream_app_3;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_pass https://$upstream_app_3/app3;
+
+            proxy_set_header x-forwarded-host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+        } 
+    }
+}
