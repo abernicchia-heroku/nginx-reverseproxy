@@ -12,8 +12,16 @@
       "description": "nginx workers",
       "value": "2"
     },
-    "NGINX_UPSTREAM_DOMAINNAME": {
-      "description": "upstream domain name URL e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
+    "NGINX_UPSTREAM_DOMAINNAME_1": {
+      "description": "upstream domain name 1 e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
+      "value": "heroku.com"
+    },
+    "NGINX_UPSTREAM_DOMAINNAME_2": {
+      "description": "upstream domain name 2 e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
+      "value": "heroku.com"
+    },
+    "NGINX_UPSTREAM_DOMAINNAME_3": {
+      "description": "upstream domain name 3 e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
       "value": "heroku.com"
     }
 	},

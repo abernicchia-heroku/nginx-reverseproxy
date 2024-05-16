@@ -44,15 +44,15 @@ http {
     resolver 8.8.8.8;
 
     upstream upstream_app_1 {
-        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>:443;
     }
 
     upstream upstream_app_2 {
-        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>:443;
     }
     
     upstream upstream_app_3 {
-        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>:443;
+        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>:443;
     }
 
 
@@ -65,32 +65,32 @@ http {
 
         location /app1 {
             set $upstream upstream_app_1;
-            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>;
+            proxy_pass https://$upstream/;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>;
         }
 
         location /app2 {
             set $upstream upstream_app_2;
-            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>;
+            proxy_pass https://$upstream/;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>;
         } 
 
         location /app3 {
             set $upstream upstream_app_3;
-            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
-            proxy_pass https://$upstream;
+            proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>;
+            proxy_pass https://$upstream/;
 
             proxy_set_header x-forwarded-host $host;
             proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME'] || 'heroku.com' %>;
+            proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>;
         } 
     }
 }
