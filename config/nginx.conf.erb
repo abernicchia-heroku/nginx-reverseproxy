@@ -63,7 +63,7 @@ http {
         root /app;
         index index.html;
 
-        location /app1 {
+        location /app1/ {
             set $upstream upstream_app_1;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>;
             proxy_pass https://$upstream/;
@@ -73,7 +73,7 @@ http {
             proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>;
         }
 
-        location /app2 {
+        location /app2/ {
             set $upstream upstream_app_2;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>;
             proxy_pass https://$upstream/;
@@ -83,7 +83,7 @@ http {
             proxy_set_header Host <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>;
         } 
 
-        location /app3 {
+        location /app3/ {
             set $upstream upstream_app_3;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>;
             proxy_pass https://$upstream/;
