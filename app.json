@@ -23,6 +23,30 @@
     "NGINX_UPSTREAM_DOMAINNAME_3": {
       "description": "upstream domain name 3 e.g. ab-ps-gettingstartedjava-acm.herokuapp.com without http/https protocol",
       "value": "heroku.com"
+    },
+    "NGINX_UPSTREAM_VIRTUAL_ROOT_1": {
+      "description": "upstream virtual root e.g. /app1/",
+      "value": "/app1/"
+    },
+    "NGINX_UPSTREAM_VIRTUAL_ROOT_2": {
+      "description": "upstream virtual root e.g. /app1/",
+      "value": "/app2/"
+    },
+    "NGINX_UPSTREAM_VIRTUAL_ROOT_3": {
+      "description": "upstream virtual root e.g. /app1/",
+      "value": "/app3/"
+    },
+    "NGINX_UPSTREAM_PATH_1": {
+      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "value": "/app1/"
+    },
+    "NGINX_UPSTREAM_PATH_2": {
+      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "value": "/app2/"
+    },
+    "NGINX_UPSTREAM_PATH_3": {
+      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "value": "/app3/"
     }
 	},
   "formation": {
