@@ -43,19 +43,6 @@ http {
     # resolver needs to be set because we're using dynamic proxy_pass
     resolver 8.8.8.8;
 
-#    upstream upstream_app_1 {
-#        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>:443;
-#    }
-
-#    upstream upstream_app_2 {
-#        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>:443;
-#    }
-    
-#    upstream upstream_app_3 {
-#        server  <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>:443;
-#    }
-
-
     server {
         listen <%= ENV["PORT"] %>;
         server_name _;
@@ -65,7 +52,6 @@ http {
 
         
         location <%= ENV['NGINX_UPSTREAM_VIRTUAL_ROOT_1'] || '/app1/' %> {
-#            set $upstream upstream_app_1;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %>;
             proxy_pass https://<%= ENV['NGINX_UPSTREAM_DOMAINNAME_1'] || 'heroku.com' %><%= ENV['NGINX_UPSTREAM_PATH_1'] || '/app1/' %>;
 
@@ -75,7 +61,6 @@ http {
         }
 
         location <%= ENV['NGINX_UPSTREAM_VIRTUAL_ROOT_2'] || '/app2/' %> {
-            set $upstream upstream_app_2;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %>;
             proxy_pass https://<%= ENV['NGINX_UPSTREAM_DOMAINNAME_2'] || 'heroku.com' %><%= ENV['NGINX_UPSTREAM_PATH_2'] || '/app2/' %>;
 
@@ -85,7 +70,6 @@ http {
         } 
 
         location <%= ENV['NGINX_UPSTREAM_VIRTUAL_ROOT_3'] || '/app3/' %> {
-            set $upstream upstream_app_3;
             proxy_ssl_name <%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %>;
             proxy_pass https://<%= ENV['NGINX_UPSTREAM_DOMAINNAME_3'] || 'heroku.com' %><%= ENV['NGINX_UPSTREAM_PATH_3'] || '/app3/' %>;
 
