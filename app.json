@@ -38,15 +38,15 @@
     },
     "NGINX_UPSTREAM_PATH_1": {
       "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
-      "value": "/app1/"
+      "value": ""
     },
     "NGINX_UPSTREAM_PATH_2": {
       "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
-      "value": "/app2/"
+      "value": ""
     },
     "NGINX_UPSTREAM_PATH_3": {
       "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
-      "value": "/app3/"
+      "value": ""
     }
 	},
   "formation": {
