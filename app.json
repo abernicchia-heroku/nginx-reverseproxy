@@ -38,15 +38,18 @@
     },
     "NGINX_UPSTREAM_PATH_1": {
       "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
-      "value": ""
+      "value": "",
+      "required": "false"
     },
     "NGINX_UPSTREAM_PATH_2": {
       "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
-      "value": ""
+      "value": "",
+      "required": "false"
     },
     "NGINX_UPSTREAM_PATH_3": {
       "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
-      "value": ""
+      "value": "",
+      "required": "false"
     }
 	},
   "formation": {
