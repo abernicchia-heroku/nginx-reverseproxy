@@ -37,15 +37,15 @@
       "value": "/app3/"
     },
     "NGINX_UPSTREAM_PATH_1": {
-      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
       "value": ""
     },
     "NGINX_UPSTREAM_PATH_2": {
-      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
       "value": ""
     },
     "NGINX_UPSTREAM_PATH_3": {
-      "description": "upstream path, it's combined with the NGINX_UPSTREAM_DOMAINNAME_1 e.g. / or /app1/ that combined is heroku.com/app1/",
+      "description": "upstream path, when left empty will allow you to add the requested URI to the upstream path, otherwise it can specify a path but the requested URI is removed",
       "value": ""
     }
 	},
